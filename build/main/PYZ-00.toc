@@ -1,4 +1,4 @@
-('C:\\Users\\bhame\\Desktop\\autoTyper\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\bhame\\Desktop\\autoTyper\\AutoTyper\\build\\main\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\bhame\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
@@ -435,7 +435,7 @@
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1520.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\windows_utils.py',
    'PYMODULE'),
   ('autotyper',
-   'C:\\Users\\bhame\\Desktop\\autoTyper\\autotyper.py',
+   'C:\\Users\\bhame\\Desktop\\autoTyper\\AutoTyper\\autotyper.py',
    'PYMODULE'),
   ('base64',
    'C:\\Program '

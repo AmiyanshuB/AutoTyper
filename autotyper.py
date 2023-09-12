@@ -68,55 +68,32 @@ class AutoTyper:
         self.is_typing = False
 
     def build_gui(self):
-        logo = Image.open("3824757.png")
-        desired_size = (50, 50)  # Adjust as necessary
-        logo = logo.resize(desired_size, resample=Image.LANCZOS)
-        logo = ImageTk.PhotoImage(logo)
-        self.logo_label = tk.Label(self.frame, image=logo, bg="gray")
-        self.logo_label.image = logo
+        frame = tk.Frame(self.app)
+        frame.pack(pady=20, padx=20)
 
-    # Place the logo to the left
-        self.logo_label.grid(row=0, column=0, padx=(10, 5), pady=20)
+        info_label = tk.Label(frame, text="Enter the text below and press the Start button or F9 to begin auto-typing. Press 'Esc' or F10 to stop typing.")
+        info_label.pack(pady=10)
 
-    # Title (now placed to the right of the logo)
-        self.label = tk.Label(self.frame, text="AutoTyper", font=("Arial", 24, "bold"), bg="gray")
-        self.label.grid(row=0, column=1, pady=20, sticky="w")
-        self.frame = tk.Frame(self.app, bg="gray")
-        self.frame.pack(padx=10, pady=10, expand=True, fill="both")
+        self.text_input = tk.Text(frame, width=50, height=10)
+        self.text_input.pack(pady=10)
 
-    # Title
-        self.label = tk.Label(self.frame, text="AutoTyper", font=("Arial", 24, "bold"), bg="gray")
-        self.label.grid(row=0, column=0, columnspan=6, pady=(20, 10), sticky="w")
+        start_delay_label = tk.Label(frame, text="Start delay (seconds):")
+        start_delay_label.pack(pady=(10, 0))
+        self.start_delay_spinbox = tk.Spinbox(frame, from_=0, to=1000, width=5, increment=0.1)
+        self.start_delay_spinbox.pack(pady=(0, 10))
 
-    # Text Input
-        self.text_input = tk.Text(self.frame, height=10, wrap=tk.WORD)
-        self.text_input.grid(row=1, column=0, columnspan=6, padx=10, pady=10, sticky="nsew")
+        char_delay_label = tk.Label(frame, text="Delay between characters (seconds):")
+        char_delay_label.pack(pady=(10, 0))
+        self.char_delay_spinbox = tk.Spinbox(frame, from_=0, to=100, width=5, increment=0.1)
+        self.char_delay_spinbox.pack(pady=(0, 10))
 
-    # Instructions for hotkeys
-        self.instructions_label = tk.Label(self.frame, text="F9 to Start, F10 to Stop, Escape to Exit", font=("Arial", 12, "italic"), bg="gray", anchor="center")
-        self.instructions_label.grid(row=2, column=0, columnspan=6, pady=10)
+        word_delay_label = tk.Label(frame, text="Delay after each word (seconds):")
+        word_delay_label.pack(pady=(10, 0))
+        self.word_delay_spinbox = tk.Spinbox(frame, from_=0, to=100, width=5, increment=0.1)
+        self.word_delay_spinbox.pack(pady=(0, 10))
 
-    # Configure the columns
-        self.frame.grid_columnconfigure(0, weight=1)  # Left column for 'Import' button
-        self.frame.grid_columnconfigure(1, weight=2)  # Middle column for 'Start' button
-        self.frame.grid_columnconfigure(2, weight=1)  # Right column for 'Export' button
-
-    # Import Button - Floating to the Left
-        self.import_button = tk.Button(self.frame, text="Import", command=self.import_text, bg="green", fg="white")
-        self.import_button.grid(row=3, column=0, padx=10, pady=5, sticky="w")
-
-    # Start Button - Centered
-        self.start_button = tk.Button(self.frame, text="Start Typing", command=self.start_typing, bg="blue", fg="white")
-        self.start_button.grid(row=3, column=1, padx=10, pady=5)
-
-    # Export Button - Floating to the Right
-        self.export_button = tk.Button(self.frame, text="Export", command=self.export_text, bg="red", fg="white")
-        self.export_button.grid(row=3, column=2, padx=10, pady=5, sticky="e")
-
-    # Ensure the text input expands to fill the available vertical space
-        self.frame.grid_rowconfigure(1, weight=1)
-
-
+        self.start_button = tk.Button(frame, text="Start Typing", command=self.start_typing)
+        self.start_button.pack(pady=10)
 
         keyboard.add_hotkey('F9', self.start_typing)
         keyboard.add_hotkey('F10', self.stop_typing)
